@@ -1,0 +1,11 @@
+language: node_js
+jobs:
+  include:
+    - stage: install dependencies
+      script: yarn install
+    - stage: test
+      script: CI=true yarn test --env=jsdom
+    - stage: build
+      script: yarn build
+    - stage: deploy
+      script: yarn deploy -- -u "Buddy <no@email.com>"
