@@ -3,11 +3,17 @@ node_js:
   - "lts/*"
 jobs:
   include:
-    - stage: install dependencies
-      script: yarn install
     - stage: test
       script: CI=true yarn test --env=jsdom
     - stage: build
       script: yarn build
-    - stage: deploy
-      script: yarn deploy -- -u "Buddy <no@email.com>"
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN 
+  keep-history: false
+  local-dir: build
+  email: no@email.com
+  name: Travis
+  on:
+    branch: master
