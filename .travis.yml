@@ -3,10 +3,8 @@ node_js:
   - "lts/*"
 jobs:
   include:
-    - stage: test
-      script: CI=true yarn test --env=jsdom
-    - stage: build
-      script: yarn build
+    - stage: test and build
+      script: yarn ci
 deploy:
   provider: pages
   skip-cleanup: true
